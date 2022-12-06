@@ -14,21 +14,23 @@ public class Program {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
-			String line = br.readLine();
-			int count, temp;
-			String fCompart, sCompart;
+			String first = br.readLine();
+			String second, third;
+			int temp;
 			char shared = 0;
 			int sum = 0;
 
-			while (line != null) {
-				count = (line.length()) / 2;
-				fCompart = line.substring(0, count);
-				sCompart = line.substring(count, count * 2);
+			while (first != null) {
 
-				for (int i = 0; i < fCompart.length(); i++) {
-					for (int j = 0; j < sCompart.length(); j++) {
-						if (fCompart.split("")[i].equals(sCompart.split("")[j])) {
-							shared = sCompart.charAt(j);
+				second = br.readLine();
+				third = br.readLine();
+
+				for (int i = 0; i < first.length(); i++) {
+					for (int j = 0; j < second.length(); j++) {
+						for (int k = 0; k < third.length(); k++) {
+							if (first.split("")[i].equals(second.split("")[j]) && second.split("")[j].equals(third.split("")[k])) {
+								shared = third.charAt(k);
+							}
 						}
 					}
 				}
@@ -40,9 +42,10 @@ public class Program {
 
 				sum += temp;
 
-				line = br.readLine();
+				first = br.readLine();
+
 			}
-			
+
 			System.out.println("Sum of the priorities: " + sum);
 
 		} catch (IOException e) {
